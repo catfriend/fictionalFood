@@ -1,0 +1,441 @@
+<!doctype html>
+<html>
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+
+	<link type="text/css" rel="stylesheet" href="fictionalFood.css">
+
+    <meta name="robots" content="noindex,nofollow">
+    <title>Fictional Food Form</title>
+
+
+    <script src="http://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $("document").ready(function(){
+            
+
+            	$("#earthApps").hide();
+	        	$("#spaceApps").hide();
+	        	$("#earthMains").hide();
+	        	$("#spaceMains").hide();
+	        	$("#earthDrinks").hide();
+	        	$("#spaceDrinks").hide();
+	        	$("#earthDesserts").hide();
+	        	$("#spaceDesserts").hide();
+
+	        	$("#terrestrialA").click(function(){
+	        		$('#spaceApps :checked').removeAttr('checked');
+	        		$("#spaceApps").hide();
+	        		$("#earthMains").hide();
+		        	$("#spaceMains").hide();
+		        	$("#earthDrinks").hide();
+		        	$("#spaceDrinks").hide();
+		        	$("#earthDesserts").hide();
+		        	$("#spaceDesserts").hide();
+	        		$("#earthApps").slideDown(200);
+	        	});
+
+	        	$("#spaceA").click(function(){
+	        		$('#earthApps :checked').removeAttr('checked');
+	        		$("#earthApps").hide();
+		        	$("#earthMains").hide();
+		        	$("#spaceMains").hide();
+		        	$("#earthDrinks").hide();
+		        	$("#spaceDrinks").hide();
+		        	$("#earthDesserts").hide();
+		        	$("#spaceDesserts").hide();
+	        		$("#spaceApps").slideDown(200);
+
+	        	});
+
+	        	$("#terrestrialM").click(function(){
+	        		$('#spaceMains :checked').removeAttr('checked');
+	        		$("#spaceMains").hide();
+	        		$("#earthApps").hide();
+		        	$("#spaceApps").hide();
+		        	$("#earthDrinks").hide();
+		        	$("#spaceDrinks").hide();
+		        	$("#earthDesserts").hide();
+		        	$("#spaceDesserts").hide();
+	        		$("#earthMains").slideDown(200);
+	        	});
+
+	        	$("#spaceM").click(function(){
+	        		$('#earthMains:checked').removeAttr('checked');
+	        		$("#earthMains").hide();
+	        		$("#earthApps").hide();
+		        	$("#spaceApps").hide();
+		        	$("#earthDrinks").hide();
+		        	$("#spaceDrinks").hide();
+		        	$("#earthDesserts").hide();
+		        	$("#spaceDesserts").hide();
+	        		$("#spaceMains").slideDown(200);
+
+	        	});
+
+	        	$("#terrestrialDr" ).click(function(){
+	        		$('#spaceDrinks :checked').removeAttr('checked');
+	        		$("#spaceApps").hide();
+	        		$("#earthApps").hide();
+	        		$("#earthMains").hide();
+		        	$("#spaceMains").hide();		 
+		        	$("#spaceDrinks").hide();
+		        	$("#earthDesserts").hide();
+		        	$("#spaceDesserts").hide();
+	        		$("#earthDrinks").slideDown(200);
+	        	});
+
+	        	$("#spaceDr").click(function(){
+	        		$('#earthDrinks :checked').removeAttr('checked');
+	        		$("#earthApps").hide();
+	        		$("#spaceApps").hide();
+		        	$("#earthMains").hide();
+		        	$("#spaceMains").hide();
+		        	$("#earthDrinks").hide();	        	
+		        	$("#earthDesserts").hide();
+		        	$("#spaceDesserts").hide();
+	        		$("#spaceDrinks").slideDown(200);
+	        	});
+
+	        	$("#terrestrialDe").click(function(){
+	        		$('#spaceDesserts :checked').removeAttr('checked');
+	        		$("#spaceApps").hide();
+	        		$("#earthMains").hide();
+		        	$("#spaceMains").hide();
+		        	$("#earthDrinks").hide();
+		        	$("#spaceDrinks").hide();
+		        	$("#earthApps").hide();
+		        	$("#spaceDesserts").hide();
+	        		$("#earthDesserts").slideDown(200);
+	        	});
+
+	        	$("#spaceDe").click(function(){
+	        		$('#earthDesserts :checked').removeAttr('checked');
+	        		$("#earthApps").hide();
+		        	$("#earthMains").hide();
+		        	$("#spaceMains").hide();
+		        	$("#earthDrinks").hide();
+		        	$("#spaceDrinks").hide();
+		        	$("#earthDesserts").hide();
+		        	$("#spaceApps").hide();
+	        		$("#spaceDesserts").slideDown(200);
+	        	});
+			
+
+			$('#myForm').submit(function(e){	
+					
+			
+				if($('#earthApps').is(":visible")){
+					var earthAppsChecked = $('#earthApps input:checkbox:checked').length;
+					if(earthAppsChecked < 1 || earthAppsChecked >2){
+						alert('Please select  1 or 2 appetizers.');
+						$('#earthApps input:checkbox').focus();
+						return false;
+					}
+				}
+
+				var appetizers = '';
+				var eappcheckboxes = $('#earthApps input[type=checkbox]:checked');
+				$(eappcheckboxes).each(function(){
+					appetizers += " " + this.value;
+				
+				});
+			
+				
+				if($('#spaceApps').is(":visible")){
+					var spaceAppsChecked = $('#spaceApps input:checkbox:checked').length;	
+					if(spaceAppsChecked < 1 || spaceAppsChecked >2){
+						alert('Please select  1 or 2 appetizers.');
+						$('#spaceApps input:checkbox').focus();
+						return false;
+					}
+				}
+			
+				var sappcheckboxes = $('#spaceApps input[type=checkbox]:checked');
+				$(sappcheckboxes).each(function(){
+					appetizers += " " + this.value;
+				
+				});
+
+				if(appetizers === '')
+				{//no appetizers selected - open one of the divs
+					alert('Your forgot to select one of our tempting appetizers!');
+					$("#earthApps").slideDown(200);	
+					$('#earthApps input:checkbox').focus();
+				
+				}
+
+//--------------------------------
+
+				if($('#earthMain').is(":visible")){
+					var earthMainChecked = $('#earthMains input:checkbox:checked').length;
+					if(earthMainChecked  != 1){
+						alert('Please select one entree.');
+						$('#earthMains input:checkbox').focus();
+						return false;
+					}	
+				}		
+
+				var entree = '';
+				var eaMaincheckboxes = $('#earthMains input[type=checkbox]:checked');
+				$(eaMaincheckboxes).each(function(){
+					entree += " " + this.value;
+				
+				});
+
+
+				if($('#spaceMain').is(":visible")){
+					var spaceMainChecked = $('#spaceMains input:checkbox:checked').length;
+					if(spaceMainChecked  != 1){
+						alert('Please select one entree.');
+						$('#spaceMains input:checkbox').focus();
+						return false;
+					}
+				}
+
+				var spmaincheckboxes = $('#spaceMains input[type=checkbox]:checked');
+				$(spmaincheckboxes).each(function(){
+					entree += " " + this.value;
+				
+				});
+
+				if(entree === '')
+				{//no entree selected - open one of the divs
+					alert('Your forgot to select one of our tempting entrees!');
+					$("#earthMains").slideDown(200);	
+					$('#earthMains input:checkbox').focus();
+				
+				}
+
+
+//-------------------------------------				
+				
+
+				if($('#earthDrink').is(":visible")){
+				var earthDrinkChecked = $('#earthDrinks input:checkbox:checked').length;
+					if(earthDrinkChecked  != 1){
+						alert('Please select one libation.');
+						$('#earthDrinks input:checkbox').focus();
+						return false;
+					}
+
+				}		
+
+
+				var drinks = '';
+				var earthDrinkcheckboxes = $('#earthDrinks input[type=checkbox]:checked');
+				$(earthDrinkcheckboxes).each(function(){
+					drinks += " " + this.value;
+				
+				});
+				
+
+				if($('#spaceDrink').is(":visible")){
+				var spaceDrinkChecked = $('#spaceDrinks input:checkbox:checked').length;
+					if(spaceDrinkChecked  != 1){
+						alert('Please select one libation.');
+						$('#spaceDrinks input:checkbox').focus();
+						return false;
+					}
+				}
+
+				var spaceDrinkcheckboxes = $('#spaceDrinks input[type=checkbox]:checked');
+				$(spaceDrinkcheckboxes).each(function(){
+					drinks += " " + this.value;
+				
+				});
+
+				if(drinks === '')
+				{//no drink selected - open one of the divs
+					alert('Your forgot to select one of our tempting libations!');
+					$("#earthDrinks").slideDown(200);	
+					$('#earthD input:checkbox').focus();
+				
+				}
+
+//-------------------------------------
+
+				if($('#earthDessert').is(":visible")){
+				var earthDessertChecked = $('#earthDesserts input:checkbox:checked').length;
+					if(earthDessertChecked  != 1){
+						alert('Please select one dessert.');
+						$('#earthDesserts input:checkbox').focus();
+						return false;
+					}
+				}		
+
+
+				var desserts = '';
+				var earthDessertcheckboxes = $('#earthDesserts input[type=checkbox]:checked');
+				$(earthDessertcheckboxes).each(function(){
+					desserts += " " + this.value;
+				
+				});
+				
+				
+				if($('#spaceDessert').is(":visible")){
+				var spaceDessertChecked = $('#spaceDesserts input:checkbox:checked').length;
+					if(spaceDessertChecked  != 1){
+						alert('Please select one dessert.');
+						$('#spaceDesserts input:checkbox').focus();
+						return false;
+					}
+				}
+
+				var spaceDessertcheckboxes = $('#spaceDesserts input[type=checkbox]:checked');
+				$(spaceDessertcheckboxes).each(function(){
+					desserts += " " + this.value;
+				
+				});
+
+
+				if(desserts === '')
+				{//no dessert selected - open one of the divs
+					alert('Your forgot to select one of our tempting desserts!');
+					$("#earthDessert").slideDown(200);	
+					$('#earthDessert input:checkbox').focus();
+				
+				}
+				
+//-------------------------------------
+				var output = "<h3>Your dinner tonight will be:</h3>";
+
+				output += "<p>Appetizer: " + appetizers + "</p>";
+				
+				output += "<p>Entree: " + entree + "</p>";
+				
+				output += "<p>Libation: " + drinks + "</p>";
+				
+				output += "<p>Desserts: " + desserts + "</p>";
+				
+				
+				$('#output').html(output);
+				e.preventDefault();
+		 
+			});
+		});
+    </script>
+</head>
+<body>
+<h1>Delights From Earth and Space</h1>
+<form id="myForm" name="myForm" action="form-handler.php" method="post">
+
+	<h2>Appetizers</h2>
+	<h3>Please choose an appetizer menu:</h3>
+	<input type ="button" id="terrestrialA" value="Terrestrial Delights" /><br>
+	<input type ="button" id="spaceA" value="Beyond the Outer Limits" /><br>
+
+	<div id="earthApps">
+		<h4>Please choose two appetizers: (choose 1 or 2)</h4>
+		<input type="checkbox" name="earthApps[]" value="Elixir Soup">Elixir Soup <br />
+		<img width="200" height="300" src="https://img0.etsystatic.com/035/1/7086363/il_570xN.507679292_3u9b.jpg">
+		<p>A wondrous blend of vegetables and magic, served in a special container.</p>
+		<input type="checkbox" name="earthApps[]" value="Meat and Onion Skewers">Meat and Onion Skewers <br />
+		<img width="300" height="200" src="http://www.fictionalfood.net/wp-content/uploads/2011/07/110725-Meat-and-Onion-Kabobs.jpg">
+		<p>Skewers of freshly dismembered animals, interspersed with onions, and roasted over an open flame.</p>
+		<input type="checkbox" name="earthApps[]" value="Catelyn's Salad">Catelyn's Salad <br />
+		<img width="300" height="200" src="http://i1.wp.com/www.innatthecrossroads.com/wp-content/uploads/2013/06/DSC035491.jpg?resize=491%2C326">
+		<p>An enchanting blend of turnip greens, fennel, raisins, and walnuts dressed with our special concoction.</p>
+    </div>
+
+    	<div id="spaceApps">
+		<h4>Please choose two appetizers: (choose 1 or 2)</h4>
+		<input type="checkbox" name="spaceApps[]" value="Plomeek Soup">Plomeek Soup <br />
+		<img width="300" height="200" src="http://miller.logspark.com/wp-content/uploads/2011/04/8-richd-tomsen-Vulcan-Plomeek-Soup.jpg">
+		<p>A Vulcan specialty, with broth from the Plomeek plant thickened with Vulcan vegetables.</p>
+		<input type="checkbox" name="spaceApps[]" value="Heart of Targ">Heart of Targ <br />
+		<img width="300" height="200" src="http://media.tumblr.com/tumblr_m9rsgkfbpC1rs0sag.jpg">
+		<p>The heart of a targ, torn and served on a bed of greens.</p>
+		<input type="checkbox" name="spaceApps[]" value="Hasperat">Hasperat <br />
+		<img width="300" height="200" src="http://2.bp.blogspot.com/-d5XdECmwsMM/T7AYrwv-IyI/AAAAAAAAArs/1HOiHkJ6qjE/s1600/hasperat.jpg">
+		<p>Think of it as the Bajoran version of a burrito, only spicier.</p>
+    </div>
+
+    		<h2>Entrees</h2>
+		<h3>Please choose an entree menu:</h3>
+		<input type ="button" id="terrestrialM" value="Terrestrial Delights" /><br>
+		<input type ="button" id="spaceM" value="Beyond the Outer Limits" /><br>
+
+      <div id="earthMains">
+		<h4>Please select one of the fine entrees below:</h4>
+		<input type="checkbox" name="earthMains" value="Lamprey Pie">Lamprey Pie <br />
+		<img width="300" height="200" src="http://veganlatina.com/wp-content/uploads/2013/03/piescoop.jpg">
+		<p>The blood-sucking parasitic eel-like fish baked with wine and spices, covered with a flaky crust.</p>
+		<input type="checkbox" name="earthMains" value="Hen on the Wall">Hen on the Wall <br />
+		<img width="300" height="200" src="https://innatthecrossroads.files.wordpress.com/2011/06/img_1589.jpg">
+		<p>Black Hen, carved, with carrot-chestnut-prune stuffing.</p>
+		<br />
+    </div>
+
+          <div id="spaceMains">
+		<h4>Please select one of the fine entrees below:</h4>
+		<input type="checkbox" name="spaceMains" value="Klingon Gagh">Klingon Gagh <br />
+		<img width="300" height="200" src="http://vignette4.wikia.nocookie.net/memoryalpha/images/f/fd/Gagh_3.jpg/revision/latest?cb=20101009095538&path-prefix=de">
+		<p>Show your hunger by downing a plate of Klingon worms.</p>
+		<input type="checkbox" name="spaceMains" value="Vegan Rhino Cutlet">Vegan Rhino Cutlet <br />
+		<img width="200" height="200" src="http://supervegan.com/blog/images/blackenedtempeh.jpg">
+		<p>Not made from rhinos following a vegan diet.</p>
+
+		<br />
+    </div>
+
+       	<h2>Drinks</h2>
+		<h3>Please choose a drink menu:</h3>
+		<input type ="button" id="terrestrialDr" value="Terrestrial Delights" /><br>
+		<input type ="button" id="spaceDr" value="Beyond the Outer Limits" /><br>
+
+          <div id="earthDrinks">
+		<h4>Please select one of our choice libations:</h4>
+		<input type="checkbox" name="earthDrinks" value="The Old Bear's Hot Spiced Wine">The Old Bear's Hot Spiced Wine <br />
+		<img width="200" height="300" src="http://www.innatthecrossroads.com/wp-content/uploads/2013/01/Mulled-Wine-NEW.jpg">
+		<p>Our own delectable blend of spices with our signature house wine.</p>
+		<input type="checkbox" name="earthDrinks" value="Shade of Evening">Shade of Evening <br />
+		<img width="300" height="200" src="http://awoiaf.westeros.org/images/thumb/6/68/Shade_of_the_evening.jpg/350px-Shade_of_the_evening.jpg">
+		<p>We're not telling, but expect real magic.</p>
+		<br />
+    </div>
+
+          <div id="spaceDrinks">
+		<h4>Please select one of our choice libations:</h4>
+		<input type="checkbox" name="spaceDrinks" value="Pan Galactic Gargle Blaster">Pan Galactic Gargle Blaster<br />
+		<img width="200" height="300" src="http://knucklesalad.com/wp-content/uploads/2010/11/PGGB.jpg">
+		<p>It's like having your brains smashed out by a slice of lemon, wrapped 'round a large gold brick. Don't panic, drink up.</p>
+		<input type="checkbox" name="spaceDrinks" value="Romulan Ale">Romulan Ale<br />
+		<img width="200" height="300" src="http://www.davidgunter.com/gallery/d/81-2/las_vegas_200507_35.jpg">
+		<br />
+    </div>
+
+       	<h2>Desserts</h2>
+		<h3>Please choose a dessert menu:</h3>
+		<input type ="button" id="terrestrialDe" value="Terrestrial Delights" /><br>
+		<input type ="button" id="spaceDe" value="Beyond the Outer Limits" /><br>
+
+           <div id="earthDesserts">
+		<h4>Please select one dessert:</h4>
+		<input type="checkbox" name="earthDesserts" value="Lemon Cakes">Lemon Cakes <br />
+		<img width="300" height="200" src="http://4.bp.blogspot.com/-U8Ph9yrY6To/Uyiie788qvI/AAAAAAAAAFY/BnNrQeKrnfI/s1600/IMG_0883.jpg">
+		<p>A delightfully bright and refreshing dessert.</p>
+		<input type="checkbox" name="earthDesserts" value="Honeycake With Blackberries and Nuts">Honeycake With Blackberries and Nuts<br />
+		<img width="300" height="200" src="http://i1.wp.com/www.innatthecrossroads.com/wp-content/uploads/2014/02/DSC05666.jpg?resize=350%2C200">
+		<p>Customarily served at royal balls, and now here at the Inn.</p>
+		<br />
+    </div>
+
+          <div id="spaceDesserts">
+		<h4>Please select one of our choice libations:</h4>
+		<input type="checkbox" name="spaceDesserts" value="Jumba Stick">Jumba Stick<br />
+		<img width="200" height="200" src="http://s3-ec.buzzfed.com/static/enhanced/webdr01/2013/7/16/11/grid-cell-4484-1373989145-22.jpg">
+		<p>Could there be anything sweeter in all the galaxy?</p>
+		<input type="checkbox" name="spaceDesserts" value="Ktarian Chocolate Puff">Ktarian Chocolate Puff<br />
+		<img width="300" height="200" src="http://vignette4.wikia.nocookie.net/memoryalpha/images/7/74/Ktarian_chocolate_puff.jpg/revision/latest?cb=20141208005520&path-prefix=en">
+		<p>Made from seventeen varieties of chocolate, this is sure to satisfy any chocoholic.</p>
+		<br />
+    </div>
+
+
+    <input type="submit" value="Place Order" />
+    <br>
+    <br><div id="output">See your final order below!</div>
+</form>
+</body>
+</html>
